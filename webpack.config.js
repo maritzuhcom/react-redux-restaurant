@@ -9,7 +9,9 @@ const VENDOR_LIBS = [
   "react-addons-css-transition-group",
   "react-dom",
   "react-redux",
-  "redux"
+  "redux",
+  "material-ui",
+  "typeface-roboto"
 ];
 
 module.exports = {
@@ -35,7 +37,7 @@ module.exports = {
       test: /\.css$/
     }, {
       use: 'file-loader',
-      test: /\.(png|jpg|gif)$/
+      test: [/\.(png|jpg|gif)$/, /\.(woff|woff2|eot|ttf|svg)$/]
     }]
   },
   plugins: [

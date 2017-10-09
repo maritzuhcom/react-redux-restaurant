@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import FlatButton from 'material-ui/FlatButton';
 
 export default class SideNav extends Component {
   render() {
     return(
       <section id='sideNav'>
-        <button className='btn btn-flat'>Create</button>
+        <FlatButton style={{width: '12em'}} label='create'/>
       </section>
     )
   }
