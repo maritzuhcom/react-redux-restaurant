@@ -1,0 +1,10 @@
+.sideNav {
+  width: 0em;
+  opacity: 0;
+  transition: width 500ms ease-out, opacity 600ms;
+}
+
+.sideNav.open {
+  width: 10em;
+  opacity: 1;
+}
