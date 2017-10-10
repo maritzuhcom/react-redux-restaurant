@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import wcLogo from '../../assets/wc_logo.svg';
 import IconButton from 'material-ui/IconButton';
+import { toggleHomeDrawer } from '../../actions/overlays';
 
-export default class Header extends Component{
+class Header extends Component{
+  menuClickHandler = (e) => {
+    this.props.dispatchToggleHomeDrawer(true);
+  }
+
   render() {
     return (
       <header id='header' style={Styles.header}>
@@ -11,6 +18,7 @@ export default class Header extends Component{
             iconClassName='material-icons'
             iconStyle={Styles.icon}
             touchRippleColor='white'
+            onClick={this.menuClickHandler}
           >
             dehaze
           </IconButton>
@@ -22,6 +30,14 @@ export default class Header extends Component{
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchToggleHomeDrawer: bindActionCreators(toggleHomeDrawer, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Header)
 
 const Styles = {
   header: {

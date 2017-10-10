@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
@@ -12,7 +11,7 @@ class SideNav extends Component {
     return(
       <section
         id='sideNav'
-        className={`sideNav ${this.propshomeDrawerOpen ? 'open' : ''}`}
+        className={`sideNav ${this.props.homeDrawerOpen ? 'open' : ''}`}
         style={Styles.navStyle}
       >
         <Link to={'/idk/'}>
