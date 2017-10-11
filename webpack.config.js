@@ -11,7 +11,9 @@ const VENDOR_LIBS = [
   "react-redux",
   "redux",
   "material-ui",
-  "typeface-roboto"
+  "typeface-roboto",
+  "prop-types",
+  "js-cookie"
 ];
 
 module.exports = {

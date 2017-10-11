@@ -5,6 +5,10 @@
 }
 
 .sideNav.open {
-  width: 10em;
+  width: 20em;
   opacity: 1;
+}
+
+.hidden {
+  display: none !important;
 }
