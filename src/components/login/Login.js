@@ -10,13 +10,16 @@ class Login extends Component {
   }
 
   componentWillMount = () => {
-    if(this.props.authenticated) {
-      this.context.router.history.push('/');
+    if(!this.props.authenticated) {
+      this.props.dispatchCheckAuth().then(() => {
+        this.context.router.history.push('/');
+      }).catch(() => {
+        // TODO do this better
+        window.location.href = 'https://mpsso61.mediaplatformdev.com/mpsso/mpssows/v1/loginPage?redirectUrl=http%3A%2F%2Flocalhost.mediaplatformdev.com%3A3132%2F'
+      })
       return;
     }
-
-    console.log(this.props.dispatchCheckAuth());
-    // window.location.href = 'https://mpsso61.mediaplatformdev.com/mpsso/mpssows/v1/loginPage?redirectUrl=http%3A%2F%2Flocalhost.mediaplatformdev.com%3A3132%2F'
+    this.context.router.history.push('/');
   }
 
   render() {

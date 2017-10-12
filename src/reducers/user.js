@@ -8,7 +8,9 @@ const defaultState = {
 export default function(state = defaultState, action) {
   switch (action.type) {
     case CHANGE_AUTH: {
-      const {data} = action.payload;
+      const data = {
+        authenticated: action.payload
+      };
       return {...state, ...data}
     }
     default: {

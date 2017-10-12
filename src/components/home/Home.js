@@ -11,7 +11,11 @@ class Home extends Component {
   }
 
   render() {
-    return <h1>Home ??</h1>
+    return (
+      <main id='home' style={Styles.main}>
+        <span>Home</span>
+      </main>
+    );
   }
 }
 
@@ -26,3 +30,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+const Styles = {
+  main: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+}

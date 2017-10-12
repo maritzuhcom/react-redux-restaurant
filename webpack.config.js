@@ -13,7 +13,8 @@ const VENDOR_LIBS = [
   "material-ui",
   "typeface-roboto",
   "prop-types",
-  "js-cookie"
+  "js-cookie",
+  "axios"
 ];
 
 module.exports = {
