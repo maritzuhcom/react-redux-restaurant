@@ -20,9 +20,8 @@ class SideNav extends Component {
       >
         <RaisedButton
           style={Styles.createBtn}
-          buttonStyle={{backgroundColor: '#2bbbad'}}
           primary={true}
-          label='CREATE'
+          label='Action'
         />
 
         <Menu
@@ -47,10 +46,6 @@ class SideNav extends Component {
           <Link to={'/help'}>
             <MenuItem style={Styles.menuItem} primaryText='Help'/>
           </Link>
-
-          <Link to={'/'}>
-            <MenuItem style={Styles.menuItem} primaryText='Logout'/>
-          </Link>
         </Menu>
       </section>
     )
@@ -70,7 +65,8 @@ const Styles = {
     alignItems: 'stretch',
     height: '100%',
     borderRight: '1px solid rgb(0,0,0)',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    flexShrink: '0'
   },
   createBtn: {
     width: 'calc(100% - 4rem)',

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import wcLogo from '../../assets/wc_logo.svg';
+import reduxLogo from '../../assets/logo.png';
 import { toggleHomeDrawer } from '../../actions/overlays';
 
 import './style.css';
@@ -15,36 +15,29 @@ class Header extends Component{
   }
 
   render() {
-    const isAuth = this.props.authenticated
     return (
       <header id='header' style={Styles.header}>
-        {isAuth ?
-            <section style={Styles.section}>
+        <section style={Styles.section}>
 
-              <div style={Styles.subSection}>
-                <IconButton
-                  iconClassName='material-icons'
-                  iconStyle={Styles.icon}
-                  touchRippleColor='white'
-                  onClick={this.menuClickHandler}
-                >
-                  dehaze
-                </IconButton>
-                <NavLink to='/'>
-                  <img style={Styles.img} src={wcLogo}/>
-                </NavLink>
-              </div>
+          <div style={Styles.subSection}>
+            <IconButton
+              id='menu'
+              iconClassName='material-icons'
+              iconStyle={Styles.icon}
+              touchRippleColor='white'
+              onClick={this.menuClickHandler}
+            >
+              dehaze
+            </IconButton>
+            <NavLink to='/'>
+              <img style={Styles.img} src={reduxLogo} />
+            </NavLink>
+          </div>
 
-              <span style={Styles.location}>Home</span>
-            </section>
-          :
-            <section style={Styles.section}>
-              <img style={Styles.img} src={wcLogo}/>
-            </section>
-        }
+          <span style={Styles.location}>React-Redux-App!</span>
+        </section>
 
-
-        <section style={Styles.section} className={isAuth ? '': 'hidden'}>
+        <section style={Styles.section}>
           <IconButton
             iconClassName='material-icons'
             iconStyle={Styles.icon}
@@ -75,7 +68,7 @@ class Header extends Component{
 }
 
 function mapStateToProps(state) {
-  return {...state.overlays, ...state.user};
+  return {...state.overlays};
 }
 
 function mapDispatchToProps(dispatch) {

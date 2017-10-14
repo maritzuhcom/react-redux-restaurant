@@ -3,13 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleHomeDrawer } from '../../actions/overlays';
 
-class Home extends Component {
-  componentDidMount() {
-    if(this.props.authenticated) {
-      this.props.dispatchToggleHomeDrawer(true);
-    }
-  }
-
+export default class Home extends Component {
   render() {
     return (
       <main id='home' style={Styles.main}>
@@ -18,18 +12,6 @@ class Home extends Component {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return state.user
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatchToggleHomeDrawer: bindActionCreators(toggleHomeDrawer, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 const Styles = {
   main: {

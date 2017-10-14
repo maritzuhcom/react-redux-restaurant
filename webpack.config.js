@@ -3,18 +3,19 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const VENDOR_LIBS = [
+  "axios",
   "lodash",
+  "material-ui",
   "moment",
+  "prop-types",
   "react",
   "react-addons-css-transition-group",
   "react-dom",
   "react-redux",
+  "react-router-dom",
   "redux",
-  "material-ui",
-  "typeface-roboto",
-  "prop-types",
-  "js-cookie",
-  "axios"
+  "redux-thunk",
+  "typeface-roboto"
 ];
 
 module.exports = {
@@ -27,8 +28,8 @@ module.exports = {
     filename: '[name].[chunkhash].js'
   },
   devServer: {
-    host: 'localhost.mediaplatformdev.com',
-    port: '3132'
+    host: 'localhost',
+    port: '8080'
   },
   module: {
     rules: [{
@@ -47,8 +48,9 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    new webpack.EnvironmentPlugin({
+      'NODE_ENV': false,
+      'DEV_ENV': 'dev'
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'

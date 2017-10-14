@@ -1,7 +1,7 @@
 import { HOME_DRAWER } from '../actions/overlays';
 
 const defaultState = {
-  homeDrawerOpen: false
+  homeDrawerOpen: true
 }
 
 export default function(state = defaultState, action) {
