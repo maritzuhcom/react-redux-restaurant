@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class Food extends Component {
+import { getLunch, getBreakfast, getDinner } from '../../actions/food';
+
+class Food extends Component {
 
   constructor(props) {
     super(props);
@@ -11,10 +15,26 @@ export default class Food extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.dispatchGetBreakfast();
+  }
+
   handleChange = (value) => {
     this.setState({
       value: value
     });
+  }
+
+  getBreakfast = () => {
+    this.props.dispatchGetBreakfast();
+  }
+
+  getLunch = () => {
+    this.props.dispatchGetLunch();
+  }
+
+  getDinner = () => {
+    this.props.dispatchGetDinner();
   }
 
   render() {
@@ -27,20 +47,22 @@ export default class Food extends Component {
           tabTemplateStyle={Styles.tabTemplateStyle}
           style={{height: '100%'}}
         >
-          <Tab label="Tab A" value="a">
+          <Tab onActive={this.getBreakfast} label="Breakfast" value="a">
             <div style={Styles.tabs}>
-              <h2 style={Styles.headline}>Controllable Tab A</h2>
-              <p>
-                Content A
-              </p>
+              <h2 style={Styles.headline}>Breakfast</h2>
+
             </div>
           </Tab>
-          <Tab label="Tab B" value="b" style={Styles.tabs}>
+          <Tab onActive={this.getLunch} label="Lunch" value="b" style={Styles.tabs}>
             <div style={Styles.tabs}>
-              <h2 style={Styles.headline}>Controllable Tab B</h2>
-              <p>
-                Content B
-              </p>
+              <h2 style={Styles.headline}>Lunch</h2>
+
+            </div>
+          </Tab>
+          <Tab onActive={this.getDinner} label="Dinner" value="c" style={Styles.tabs}>
+            <div style={Styles.tabs}>
+              <h2 style={Styles.headline}>Dinner</h2>
+
             </div>
           </Tab>
         </Tabs>
@@ -48,6 +70,22 @@ export default class Food extends Component {
     );
   }
 }
+
+// this connects the Component to the state
+function mapStateToProps(state) {
+  return {...state.food};
+}
+
+//this connects the compoent to the action
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchGetLunch: bindActionCreators(getLunch, dispatch),
+    dispatchGetBreakfast: bindActionCreators(getBreakfast, dispatch),
+    dispatchGetDinner: bindActionCreators(getDinner, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Food);
 
 const Styles = {
   food: {
