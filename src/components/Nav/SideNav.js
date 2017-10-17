@@ -18,33 +18,36 @@ class SideNav extends Component {
         className={`sideNav ${this.props.homeDrawerOpen ? 'open' : ''}`}
         style={Styles.navStyle}
       >
-        <RaisedButton
-          style={Styles.createBtn}
-          primary={true}
-          label='Action'
-        />
+        <Link to={'/'}>
+          <RaisedButton
+            style={Styles.createBtn}
+            primary={true}
+            label='Home'
+          />
+        </Link>
 
         <Menu
           desktop={true}
           autoWidth={false}
           style={Styles.menu}
         >
-          <Link to={'/'}>
-            <MenuItem style={Styles.menuItem} primaryText='Home'/>
+
+          <Link to={'/food'}>
+            <MenuItem style={Styles.menuItem} primaryText='Food'/>
           </Link>
 
-          <Link to={'/events'}>
-            <MenuItem style={Styles.menuItem} primaryText='Events'/>
+          <Link to={'/locations'}>
+            <MenuItem style={Styles.menuItem} primaryText='Locations'/>
           </Link>
 
           <Divider />
 
-          <Link to={'/settings'}>
-            <MenuItem style={Styles.menuItem} primaryText='Settings'/>
+          <Link to={'/contact'}>
+            <MenuItem style={Styles.menuItem} primaryText='Contact'/>
           </Link>
 
-          <Link to={'/help'}>
-            <MenuItem style={Styles.menuItem} primaryText='Help'/>
+          <Link to={'/careers'}>
+            <MenuItem style={Styles.menuItem} primaryText='Careers'/>
           </Link>
         </Menu>
       </section>
