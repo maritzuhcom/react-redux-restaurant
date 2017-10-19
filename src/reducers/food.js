@@ -10,8 +10,10 @@ const defaultState = {
 export default function(state = defaultState, action) {
   switch (action.type) {
     case GET_BREAKFAST: {
-      console.log('getting breakfast 2');
-      break;
+      const data = {
+        breakfast: action.payload
+      }
+      return {...state, ...data}
     }
     case GET_LUNCH: {
       break;

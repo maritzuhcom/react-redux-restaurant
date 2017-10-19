@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import MenuItem from './food/MenuItem';
 
 import { getLunch, getBreakfast, getDinner } from '../../actions/food';
 
@@ -37,6 +38,18 @@ class Food extends Component {
     this.props.dispatchGetDinner();
   }
 
+  getBreakfastItems = () => {
+    return this.props.breakfast.map((breakfastItem, i) => {
+      return (
+        <MenuItem
+          key={i}
+          title={breakfastItem.name}
+          price={breakfastItem.price}
+        />
+      );
+    })
+  }
+
   render() {
     return (
       <main id='food' style={Styles.food}>
@@ -48,9 +61,8 @@ class Food extends Component {
           style={{height: '100%'}}
         >
           <Tab onActive={this.getBreakfast} label="Breakfast" value="a">
-            <div style={Styles.tabs}>
-              <h2 style={Styles.headline}>Breakfast</h2>
-
+            <div style={Styles.innerTab}>
+              {this.getBreakfastItems()}
             </div>
           </Tab>
           <Tab onActive={this.getLunch} label="Lunch" value="b" style={Styles.tabs}>
@@ -110,6 +122,14 @@ const Styles = {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'flex-start',
+  },
+  innerTab: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    overflow: 'auto',
+    maxHeight: '100%',
+    overflow: 'auto'
   }
 }
