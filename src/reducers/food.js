@@ -16,10 +16,16 @@ export default function(state = defaultState, action) {
       return {...state, ...data}
     }
     case GET_LUNCH: {
-      break;
+      const data = {
+        lunch: action.payload
+      }
+      return {...state, ...data}
     }
     case GET_DINNER: {
-      break;
+      const data = {
+        dinner: action.payload
+      }
+      return {...state, ...data}
     }
     default: {
       return {...state}

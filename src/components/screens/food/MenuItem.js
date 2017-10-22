@@ -16,7 +16,7 @@ export  default class MenuItem extends Component {
         />
         <CardActions>
          <FlatButton label="Add to cart" />
-         <FlatButton label="Remove" />
+
          </CardActions>
          <CardText expandable={true}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -50,6 +50,30 @@ class Food extends Component {
     })
   }
 
+  getLunchItems = () => {
+    return this.props.lunch.map((lunchItem, i) => {
+      return (
+        <MenuItem
+          key={i}
+          title={lunchItem.name}
+          price={lunchItem.price}
+        />
+      );
+    })
+  }
+
+  getDinnerItems = () => {
+    return this.props.dinner.map((dinnerItem, i) => {
+      return (
+        <MenuItem
+          key={i}
+          title={dinnerItem.name}
+          price={dinnerItem.price}
+        />
+      );
+    })
+  }
+
   render() {
     return (
       <main id='food' style={Styles.food}>
@@ -67,13 +91,17 @@ class Food extends Component {
           </Tab>
           <Tab onActive={this.getLunch} label="Lunch" value="b" style={Styles.tabs}>
             <div style={Styles.tabs}>
-              <h2 style={Styles.headline}>Lunch</h2>
+              <div style={Styles.innerTab}>
+                {this.getLunchItems()}
+              </div>
 
             </div>
           </Tab>
           <Tab onActive={this.getDinner} label="Dinner" value="c" style={Styles.tabs}>
             <div style={Styles.tabs}>
-              <h2 style={Styles.headline}>Dinner</h2>
+              <div style={Styles.innerTab}>
+                {this.getDinnerItems()}
+              </div>
 
             </div>
           </Tab>
