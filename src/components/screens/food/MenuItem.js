@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export  default class MenuItem extends Component {
+import { addToCart } from '../../../actions/cart';
+
+class MenuItem extends Component {
+
+  clickHandler = () => {
+    this.props.dispatchAddToCart({
+      item: this.props.title,
+      price: this.props.price
+    })
+  }
+
   render () {
     return(
       <Card
@@ -15,7 +27,7 @@ export  default class MenuItem extends Component {
           showExpandableButton={true}
         />
         <CardActions>
-         <FlatButton label="Add to cart" />
+         <FlatButton label="Add to cart" onClick={this.clickHandler}/>
 
          </CardActions>
          <CardText expandable={true}>
@@ -28,6 +40,14 @@ export  default class MenuItem extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchAddToCart: bindActionCreators(addToCart, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(MenuItem);
 
 const Styles = {
   card: {
