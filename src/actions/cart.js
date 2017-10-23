@@ -9,8 +9,8 @@ export function addToCart(item) {
 
 /*
 sample data
-{
-  item: 'eggs',
-  price: 2.00
-}
+  {
+    item: 'eggs',
+    price: 2.00
+  }
  */
