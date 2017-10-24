@@ -3,13 +3,21 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import reduxLogo from '../../assets/logo.png';
+import Dialog from 'material-ui/Dialog';
+import ShoppingCartModal from '../screens/ShoppingCartModal';
+
 import { toggleHomeDrawer } from '../../actions/overlays';
+import { cartModal } from '../../actions/cart';
 
 import './style.css';
 
 import IconButton from 'material-ui/IconButton';
 
 class Header extends Component{
+  handleClick = () => {
+    this.props.dispatchOpenCartModal(true);
+  }
+
   menuClickHandler = (e) => {
     this.props.dispatchToggleHomeDrawer(!this.props.homeDrawerOpen);
   }
@@ -55,12 +63,15 @@ class Header extends Component{
           </IconButton>
 
           <IconButton
+            onClick={this.handleClick}
             iconClassName='material-icons'
             iconStyle={Styles.icon}
             touchRippleColor='white'
           >
-            notifications
+            add_shopping_cart
           </IconButton>
+          <ShoppingCartModal/>
+
         </section>
       </header>
     )
@@ -73,7 +84,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchToggleHomeDrawer: bindActionCreators(toggleHomeDrawer, dispatch)
+    dispatchToggleHomeDrawer: bindActionCreators(toggleHomeDrawer, dispatch),
+    dispatchOpenCartModal: bindActionCreators(cartModal, dispatch)
   }
 }
 

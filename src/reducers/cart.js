@@ -1,12 +1,12 @@
-import {ADD_TO_CART} from '../actions/cart';
+import {ADD_TO_CART, CART_MODAL} from '../actions/cart';
 
 const defaultState = {
   orders: [],
-  price: 0.00
+  price: 0.00,
+  modalOpen: false
 }
 
 export default function(state = defaultState, action) {
-  console.log(action);
   switch (action.type) {
     case ADD_TO_CART: {
       const newOrders = state.orders.slice();
@@ -18,7 +18,14 @@ export default function(state = defaultState, action) {
         orders: newOrders,
         price: newPrice
       }
-      return {...data}
+      return {...state, ...data};
+    }
+    case CART_MODAL: {
+      const data = {
+        modalOpen: action.payload
+      }
+
+      return {...state, ...data};
     }
     default: {
       break;
