@@ -22,6 +22,7 @@ class ShoppingCartModal extends Component {
         <div style={Style.shoppingItems}>
         </div>
         <div style={Style.price}>
+          <h2>Price: {this.props.price}</h2>
         </div>
         <footer style={Style.footer}>
           <FlatButton label="Cancel" onClick={this.handleClick}/>
@@ -61,6 +62,7 @@ const Style = {
     width: '100%',
     height: '5em',
     backgroundColor: 'red',
+    paddingLeft: '1.4em'
   },
   footer: {
     width: '100%',
@@ -69,6 +71,6 @@ const Style = {
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center'
+  },
 
-  }
 }
