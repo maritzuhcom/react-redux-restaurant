@@ -5,17 +5,14 @@ import { bindActionCreators } from 'redux';
 import reduxLogo from '../../assets/logo.png';
 import Dialog from 'material-ui/Dialog';
 import ShoppingCartModal from '../screens/ShoppingCartModal';
-
 import { toggleHomeDrawer } from '../../actions/overlays';
-import { cartModal } from '../../actions/cart';
-
+import { toggleCartDrawer } from '../../actions/cart';
 import './style.css';
-
 import IconButton from 'material-ui/IconButton';
 
 class Header extends Component{
   handleClick = () => {
-    this.props.dispatchOpenCartModal(true);
+    this.props.dispatchToggleCartDrawer(true);
   }
 
   menuClickHandler = (e) => {
@@ -85,7 +82,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     dispatchToggleHomeDrawer: bindActionCreators(toggleHomeDrawer, dispatch),
-    dispatchOpenCartModal: bindActionCreators(cartModal, dispatch)
+    dispatchToggleCartDrawer: bindActionCreators(toggleCartDrawer, dispatch)
   }
 }
 

@@ -1,9 +1,11 @@
-import {ADD_TO_CART, CART_MODAL} from '../actions/cart';
+import {ADD_TO_CART, TOGGLE_CART_DRAWER} from '../actions/cart';
+
+//redux state
 
 const defaultState = {
   orders: [],
   price: 0.00,
-  modalOpen: false
+  drawerOpen: false
 }
 
 export default function(state = defaultState, action) {
@@ -20,9 +22,9 @@ export default function(state = defaultState, action) {
       }
       return {...state, ...data};
     }
-    case CART_MODAL: {
+    case TOGGLE_CART_DRAWER: {
       const data = {
-        modalOpen: action.payload
+        drawerOpen: action.payload
       }
 
       return {...state, ...data};

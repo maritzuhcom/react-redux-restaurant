@@ -1,5 +1,7 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
-export const CART_MODAL = 'CART_MODAL';
+export const TOGGLE_CART_DRAWER = 'TOGGLE_CART_DRAWER';
+
+// updates redux state, functions that trigger updates in the redux state
 
 export function addToCart(item) {
   return {
@@ -8,18 +10,9 @@ export function addToCart(item) {
   };
 }
 
-export function cartModal(isOpen) {
+export function toggleCartDrawer(isOpen) {
   return {
-  type: CART_MODAL,
-  payload: isOpen
+    type: TOGGLE_CART_DRAWER,
+    payload: isOpen
   }
 };
-
-
-/*
-sample data
-  {
-    item: 'eggs',
-    price: 2.00
-  }
- */
