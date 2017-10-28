@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 import { toggleCartDrawer } from '../../actions/cart';
+import Chip from 'material-ui/Chip';
 
 
 class ShoppingCartModal extends Component {
@@ -11,7 +12,24 @@ class ShoppingCartModal extends Component {
     this.props.dispatchCloseCartDrawer(false);
   }
 
+  deleteHandler = () => {
+    console.log('hey');
+  }
+
+
   render() {
+    const chips = this.props.orders.map((orderItem, i) => {
+      return(
+        <Chip
+          onRequestDelete={this.deleteHandler}
+          style={Style.theChip}
+          labelStyle={Style.theChip}
+          key={i}
+        >
+          {orderItem}
+        </Chip>
+      )
+    });
     return(
       <Drawer
         docked={false}
@@ -20,9 +38,10 @@ class ShoppingCartModal extends Component {
         containerStyle={Style.wrapper}
       >
         <div style={Style.shoppingItems}>
+          {chips}
         </div>
         <div style={Style.price}>
-          <h2>Price: {this.props.price}</h2>
+          <h3>Price: {this.props.price}</h3>
         </div>
         <footer style={Style.footer}>
           <FlatButton label="Cancel" onClick={this.handleClick}/>
@@ -49,20 +68,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartModal)
 const Style = {
   wrapper: {
     display: 'flex',
-    flexDirection: 'column',
-
+    flexDirection: 'column'
   },
   shoppingItems: {
     width: '100%',
     height: '100%',
     backgroundColor: 'blue',
-
+    padding: '2em',
+    boxSizing: 'border-box'
   },
   price: {
     width: '100%',
     height: '5em',
     backgroundColor: 'red',
-    paddingLeft: '1.4em'
   },
   footer: {
     width: '100%',
@@ -72,5 +90,7 @@ const Style = {
     justifyContent: 'space-evenly',
     alignItems: 'center'
   },
-
+  theChip: {
+    width: '100%'
+  }
 }
