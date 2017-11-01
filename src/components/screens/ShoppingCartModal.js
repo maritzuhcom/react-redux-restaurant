@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
-import { toggleCartDrawer } from '../../actions/cart';
+import { toggleCartDrawer, removeFromCart } from '../../actions/cart';
 import Chip from 'material-ui/Chip';
 
 
@@ -12,24 +12,36 @@ class ShoppingCartModal extends Component {
     this.props.dispatchCloseCartDrawer(false);
   }
 
-  deleteHandler = () => {
-    console.log('hey');
+  deleteHandler = (orderItem) => {
+    this.props.dispatchRemoveFromCart(orderItem);
+  }
+
+  getChips = () => {
+    if (this.props.orders.length === 0) {
+      return (
+        <h3>Cart is Empty</h3>
+      )
+    }
+    
+    return this.props.orders.map((orderItem, i) => {
+      return(
+        <div key={i} style={Style.chipWrapper}>
+          <Chip
+            onRequestDelete={() => {
+              this.deleteHandler(orderItem);
+            }}
+            style={Style.theChip}
+            labelStyle={Style.theChip}
+          >
+            {orderItem}
+          </Chip>
+        </div>
+      )
+    });
   }
 
 
   render() {
-    const chips = this.props.orders.map((orderItem, i) => {
-      return(
-        <Chip
-          onRequestDelete={this.deleteHandler}
-          style={Style.theChip}
-          labelStyle={Style.theChip}
-          key={i}
-        >
-          {orderItem}
-        </Chip>
-      )
-    });
     return(
       <Drawer
         docked={false}
@@ -38,7 +50,7 @@ class ShoppingCartModal extends Component {
         containerStyle={Style.wrapper}
       >
         <div style={Style.shoppingItems}>
-          {chips}
+          {this.getChips()}
         </div>
         <div style={Style.price}>
           <h3>Price: {this.props.price}</h3>
@@ -59,7 +71,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchCloseCartDrawer: bindActionCreators(toggleCartDrawer, dispatch)
+    dispatchCloseCartDrawer: bindActionCreators(toggleCartDrawer, dispatch),
+    dispatchRemoveFromCart: bindActionCreators(removeFromCart, dispatch)
   }
 }
 
@@ -92,5 +105,8 @@ const Style = {
   },
   theChip: {
     width: '100%'
+  },
+  chipWrapper: {
+    margin: '1em 0 1em 0'
   }
 }

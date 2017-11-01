@@ -1,4 +1,4 @@
-import {ADD_TO_CART, TOGGLE_CART_DRAWER} from '../actions/cart';
+import {ADD_TO_CART, TOGGLE_CART_DRAWER, REMOVE_FROM_CART} from '../actions/cart';
 
 //redux state
 
@@ -10,6 +10,19 @@ const defaultState = {
 
 export default function(state = defaultState, action) {
   switch (action.type) {
+    case REMOVE_FROM_CART: {
+      //copies array from state
+      const newOrders = state.orders.slice();
+      //get index of item
+      const index = newOrders.indexOf(action.payload);
+      //removes item
+      newOrders.splice(index, 1);
+
+      const data = {
+        orders: newOrders
+      }
+      return {...state, ...data}
+    }
     case ADD_TO_CART: {
       //copies the array from the state
       const newOrders = state.orders.slice();
