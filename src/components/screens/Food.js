@@ -134,7 +134,8 @@ const Styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    overflow: 'scroll'
   },
   headline: {
     fontSize: 24,

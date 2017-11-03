@@ -19,10 +19,10 @@ class ShoppingCartModal extends Component {
   getChips = () => {
     if (this.props.orders.length === 0) {
       return (
-        <h3>Cart is Empty</h3>
+        <span style={Style.empty}>Cart is Empty</span>
       )
     }
-    
+
     return this.props.orders.map((orderItem, i) => {
       return(
         <div key={i} style={Style.chipWrapper}>
@@ -53,7 +53,7 @@ class ShoppingCartModal extends Component {
           {this.getChips()}
         </div>
         <div style={Style.price}>
-          <h3>Price: {this.props.price}</h3>
+          Price: {this.props.price}
         </div>
         <footer style={Style.footer}>
           <FlatButton label="Cancel" onClick={this.handleClick}/>
@@ -81,24 +81,26 @@ export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartModal)
 const Style = {
   wrapper: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    fontFamily: 'Roboto, sans-serif',
   },
   shoppingItems: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'blue',
     padding: '2em',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    overflow: 'scroll',
+    fontFamily: 'Roboto, sans-serif',
   },
   price: {
     width: '100%',
     height: '5em',
-    backgroundColor: 'red',
+    margin: '3.5em',
+    fontFamily: 'Roboto, sans-serif',
   },
   footer: {
     width: '100%',
     height: '5em',
-    backgroundColor: 'green',
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center'
@@ -108,5 +110,9 @@ const Style = {
   },
   chipWrapper: {
     margin: '1em 0 1em 0'
+  },
+  empty: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 }
