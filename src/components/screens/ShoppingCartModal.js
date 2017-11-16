@@ -19,7 +19,7 @@ class ShoppingCartModal extends Component {
   getChips = () => {
     if (this.props.orders.length === 0) {
       return (
-        <span style={Style.empty}>Cart is Empty</span>
+        <span style={Style.empty}>CART IS EMPTY</span>
       )
     }
 
@@ -53,7 +53,7 @@ class ShoppingCartModal extends Component {
           {this.getChips()}
         </div>
         <div style={Style.price}>
-          Price: {this.props.price}
+          PRICE: {this.props.price}
         </div>
         <footer style={Style.footer}>
           <FlatButton label="Cancel" onClick={this.handleClick}/>
