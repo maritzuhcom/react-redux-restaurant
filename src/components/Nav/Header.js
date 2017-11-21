@@ -44,26 +44,11 @@ class Header extends Component{
 
         <section style={Styles.section}>
           <IconButton
-            iconClassName='material-icons'
-            iconStyle={Styles.icon}
-            touchRippleColor='white'
-          >
-            filter_list
-          </IconButton>
-
-          <IconButton
-            iconClassName='material-icons'
-            iconStyle={Styles.icon}
-            touchRippleColor='white'
-          >
-            view_module
-          </IconButton>
-
-          <IconButton
             onClick={this.handleClick}
             iconClassName='material-icons'
             iconStyle={Styles.icon}
             touchRippleColor='white'
+            tooltip='Checkout'
           >
             add_shopping_cart
           </IconButton>
