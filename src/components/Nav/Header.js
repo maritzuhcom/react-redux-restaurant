@@ -39,7 +39,7 @@ class Header extends Component{
             </NavLink>
           </div>
 
-          <span style={Styles.location}>React-Redux-App!</span>
+          <span style={Styles.location}>React-Redux-Restaurant!</span>
         </section>
 
         <section style={Styles.section}>

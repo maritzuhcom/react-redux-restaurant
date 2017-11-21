@@ -5,6 +5,7 @@ import { toggleHomeDrawer } from '../../actions/overlays';
 import { GridList, GridTile } from 'material-ui/GridList';
 import { Card, CardHeader } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
 
 // import IconButton from 'material-ui/IconButton';
 // import StarBorder from 'material-ui/svg-icons/toggle/star-border';
@@ -29,27 +30,49 @@ export default class Home extends Component {
   render() {
     return (
       <main id='home' style={Styles.main}>
-        <Card>
+        <Card
+          style={Styles.card}
+        >
           <CardHeader
             title="Promotions"
+            titleStyle={Styles.titleStyles}
           />
-        </Card>
-        <div style={Styles.root}>
 
-          <GridList
-            style={Styles.gridList}
-            cols={2.2}
-            cellHeight='auto'
-          >
-            {this.getGridTiles()}
-          </GridList>
+          <div style={Styles.root}>
+            <GridList
+              style={Styles.gridList}
+              cols={2.2}
+              cellHeight='auto'
+            >
+              {this.getGridTiles()}
+            </GridList>
+          </div>
+
+        </Card>
+
+        <div style={Styles.middleWrapper}>
+          <div style={Styles.middle}>
+            <FlatButton label="Subscribe to Our News Letter" fullWidth={true} />
+          </div>
+
+          <Divider />
+
+          <div style={Styles.restaurant}>
+            Restaurant
+          </div>
+
+          <div style={Styles.paragraph}>
+            Hello! I am Maritza; a front end developer, and I made this app as a playground using react and redux. Open the react or redux dev
+            tools and see whats going on. If a page is blank, it is under construction!!! Filler text is next: Our Award-Winning Restaurants features “The Food That Makes Us Feel Fat And Good At The Same Time!®” –
+            a menu of high-quality, savory signature dishes such as: delicious breakfast options, Angus Beef steaks and
+            burgers, fresh fish, and chicken. It also offers a broad selection of innovative, healthy, and beautifully
+            presented salads, appetizers, and homemade desserts.
+          </div>
+
+          <Divider />
+
         </div>
-        <div style={Styles.middle}>
-          <FlatButton label="Subscribe to Our News Letter" fullWidth={true} />
-        </div>
-        <div style={Styles.restaurant}>
-          Restaurant
-        </div>
+
       </main>
     );
   }
@@ -103,14 +126,18 @@ const Styles = {
     height: '100%',
     width: '100%',
     overflow: 'scroll',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
     padding: '2em',
     boxSizing: 'border-box',
-
-
+  },
+  card: {
+    width: '100%',
+    height: '25em',
+    overflowX: 'scroll',
+    flexShrink: '0'
+  },
+  titleStyles: {
+    fontSize: '30px',
+    fontWeight: '300'
   },
   root: {
     width: '100%',
@@ -129,12 +156,16 @@ const Styles = {
   imageSize: {
     height: '20em',
   },
+  middleWrapper: {
+    height: '60%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+
+  },
   middle: {
     width: '100%',
     height: '7em',
-    backgroundColor: 'grey',
-    marginTop: '5em',
-    marginBottom: '5em',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -146,5 +177,9 @@ const Styles = {
     alignItems: 'center',
     fontSize: '3em',
     fontWeight: '100'
+  },
+  paragraph: {
+    fontWeight: '300',
+    fontSize: '20px',
   }
 }
