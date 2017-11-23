@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
-import { toggleCartDrawer, removeFromCart } from '../../actions/cart';
+import { toggleCartDrawer, removeFromCart, emptyCart } from '../../actions/cart';
 import Chip from 'material-ui/Chip';
 
 
 class ShoppingCartModal extends Component {
   handleClick = () => {
     this.props.dispatchCloseCartDrawer(false);
+  }
+
+  handleCheckout = () => {
+    this.props.dispatchEmptyCart();
   }
 
   deleteHandler = (orderItem) => {
@@ -57,7 +61,7 @@ class ShoppingCartModal extends Component {
         </div>
         <footer style={Style.footer}>
           <FlatButton label="Cancel" onClick={this.handleClick}/>
-          <FlatButton label="Checkout" />
+          <FlatButton label="Checkout" onClick={this.handleCheckout}/>
         </footer>
 
       </Drawer>
@@ -72,7 +76,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     dispatchCloseCartDrawer: bindActionCreators(toggleCartDrawer, dispatch),
-    dispatchRemoveFromCart: bindActionCreators(removeFromCart, dispatch)
+    dispatchRemoveFromCart: bindActionCreators(removeFromCart, dispatch),
+    dispatchEmptyCart: bindActionCreators(emptyCart, dispatch)
   }
 }
 

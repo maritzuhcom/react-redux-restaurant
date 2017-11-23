@@ -106,7 +106,7 @@ const tilesData = [
   },
   {
     img: 'http://foudefoodmtl.com/wp-content/uploads/2013/02/LobsterPasta-5.jpg',
-    title: 'lobster lasagna',
+    title: 'Lobster Pasta',
     author: 'fancycravel',
   },
   {

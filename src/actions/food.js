@@ -1,9 +1,7 @@
 export const GET_BREAKFAST= 'GET_BREAKFAST';
 export const GET_LUNCH = 'GET_LUNCH';
 export const GET_DINNER = 'GET_DINNER';
-
 import { foodItems } from '../config/foodItems';
-
 
 export function getBreakfast() {
   const breakfasts = foodItems.filter((item) => {

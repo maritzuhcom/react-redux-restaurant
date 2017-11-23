@@ -1,4 +1,4 @@
-import {ADD_TO_CART, TOGGLE_CART_DRAWER, REMOVE_FROM_CART} from '../actions/cart';
+import {ADD_TO_CART, TOGGLE_CART_DRAWER, REMOVE_FROM_CART, EMPTY_CART} from '../actions/cart';
 
 //redux state
 
@@ -45,6 +45,9 @@ export default function(state = defaultState, action) {
       }
 
       return {...state, ...data};
+    }
+    case EMPTY_CART: {
+      return {...state, price: 0.00, orders: []}
     }
     default: {
       break;

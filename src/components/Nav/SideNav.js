@@ -42,7 +42,7 @@ class SideNav extends Component {
           <Divider />
 
           <Link to={'/contact'}>
-            <MenuItem style={Styles.menuItem} primaryText='Contact'/>
+            <MenuItem style={Styles.menuItem} primaryText='Contact Us'/>
           </Link>
 
           <Link to={'/careers'}>
