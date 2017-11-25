@@ -17,3 +17,6 @@ This project aims to be a start project for anyone looking to use the latest ver
 ### Unit Testing
 * `npm i`
 * `npm run test:watch`
+
+# To Deploy
+`git subtree push --prefix dist origin gh-pages`
