@@ -12,15 +12,29 @@ export default class Careers extends Component {
       modalOpen: false,
       firstName: '',
       lastName: '',
-      email: ''
+      email: '',
+      firstNameError: '',
+      lastNameError: '',
+      emailError: ''
     }
   }
 
   handleOpen = () => {
+    const errorMessage = 'This field is required'
+    if (!this.emailIsValid() ||
+        this.state.firstName === '' ||
+        this.state.lastName === '' ||
+        this.state.email === ''
+      ) {
+          this.state.firstName === '' ? this.setState({firstNameError: errorMessage}) : '';
+          this.state.lastName === '' ? this.setState({lastNameError: errorMessage}) : '';
+          this.emailIsValid() ? '' : this.setState({emailError: 'Use a correct email'});
+        return;
+    }
+
     this.setState({
       modalOpen: true
     });
-
   }
 
   handleClose = () => {
@@ -28,8 +42,11 @@ export default class Careers extends Component {
       modalOpen: false,
       firstName: '',
       lastName: '',
-      email: ''
-    })
+      email: '',
+      firstNameError: '',
+      lastNameError: '',
+      emailError: ''
+    });
   }
 
   firstNameHandler = (e) => {
@@ -50,6 +67,21 @@ export default class Careers extends Component {
     });
   }
 
+  emailIsValid = () => {
+    const { email } = this.state;
+
+    if(!email.includes('@')) {
+      return false;
+    }
+
+
+    if(!email.includes('.')) {
+      return false;
+    }
+
+    return true;
+  }
+
   render() {
     return (
       <main style={Styles.textFields}>
@@ -58,16 +90,19 @@ export default class Careers extends Component {
           hintText="FIRST NAME"
           value={this.state.firstName}
           onChange={this.firstNameHandler}
+          errorText={this.state.firstNameError}
         />
         <TextField
           hintText="LAST NAME"
           value={this.state.lastName}
           onChange={this.lastNameHandler}
+          errorText={this.state.lastNameError}
         />
         <TextField
           hintText="EMAIL"
           value={this.state.email}
           onChange={this.emailHandler}
+          errorText={this.state.emailError}
         />
         <FlatButton
           label="UPLOAD RESUME"
@@ -78,7 +113,10 @@ export default class Careers extends Component {
         </FlatButton>
 
 
-        <FlatButton label="SUBMIT" fullWidth={true} onClick={this.handleOpen}/>
+        <FlatButton
+        label="SUBMIT"
+        fullWidth={true}
+        onClick={this.handleOpen}/>
         <div>
           <Dialog
             actions={[

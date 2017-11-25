@@ -6,12 +6,23 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import { Card, CardHeader } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
+import Dialog from 'material-ui/Dialog';
+import TextField from 'material-ui/TextField';
 
 // import IconButton from 'material-ui/IconButton';
 // import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 
 export default class Home extends Component {
+  constructor() {
+    super();
+    this.state = {
+      subscribeModal: false,
+      submitModal: false,
+      email: '',
+      emailError: ''
+    }
+  }
 
   getGridTiles = () => {
     return tilesData.map((tile) => (
@@ -26,10 +37,100 @@ export default class Home extends Component {
 
     ));
   }
+  handleClose = () => {
+    this.setState({
+      subscribeModal: false,
+      email: '',
+      submitModal: false,
+      emailError: ''
+    });
+  }
+
+  handleOpen = () => {
+    this.setState({
+      subscribeModal: true
+    });
+  }
+
+  onChangeEmail = (e) => {
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  emailIsValid = () => {
+    const { email } = this.state;
+
+    if(!email.includes('@')) {
+      return false;
+    }
+
+    if(!email.includes('.')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  handleSubmit = () => {
+    if (!this.emailIsValid()) {
+      this.setState({
+        emailError: 'Use a correct email'
+      });
+
+      return;
+    }
+
+    this.setState({
+      submitModal: true
+    });
+  }
 
   render() {
     return (
       <main id='home' style={Styles.main}>
+
+        <Dialog
+          actions={[
+            <FlatButton
+              label="Close"
+              primary={true}
+              onClick={this.handleClose}
+            />,
+            <FlatButton
+              label="Submit"
+              primary={true}
+              onClick={this.handleSubmit}
+            />
+          ]}
+          open={this.state.subscribeModal}
+          onRequestClose={this.handleClose}
+        >
+          <TextField
+            hintText="Email address"
+            underlineShow={false}
+            value={this.state.email}
+            onChange={this.onChangeEmail}
+            errorText={this.state.emailError}
+          />
+        </Dialog>
+
+
+        <Dialog
+          actions={[
+            <FlatButton
+              label="Close"
+              primary={true}
+              onClick={this.handleClose}
+            />
+          ]}
+          modal={false}
+          open={this.state.submitModal}
+        >
+          You have been subscribed!
+        </Dialog>
+
+
         <Card
           style={Styles.card}
         >
@@ -52,8 +153,9 @@ export default class Home extends Component {
 
         <div style={Styles.middleWrapper}>
           <div style={Styles.middle}>
-            <FlatButton label="Subscribe to Our News Letter" fullWidth={true} />
+            <FlatButton label="Subscribe to Our News Letter" onClick={this.handleOpen} fullWidth={true} />
           </div>
+
 
           <Divider />
 
