@@ -19,4 +19,5 @@ This project aims to be a start project for anyone looking to use the latest ver
 * `npm run test:watch`
 
 # To Deploy
+`git commit -m "Update to gh-pages`
 `git subtree push --prefix dist origin gh-pages`
