@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import ReduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,13 +9,16 @@ import Main from './components/Main';
 import reducers from './reducers';
 import 'typeface-roboto';
 import './css/app.css';
-
+// Redux dev tools 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// Redux setup
 const enhancer = composeEnhancers(
   applyMiddleware(ReduxThunk)
 );
 const store = createStore(reducers, enhancer);
 
+// Main element that gets rendered to index.html
 const App = () => {
   return (
     <Provider store={store}>
@@ -26,7 +29,7 @@ const App = () => {
   )
 }
 
-ReactDom.render(
+ReactDOM.render(
   <App />,
   document.body.querySelector('.container')
 );
